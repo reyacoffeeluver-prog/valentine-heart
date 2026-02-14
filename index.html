@@ -1,188 +1,120 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Catch My Heart 💖</title>
+    <title>hi</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #ffdde1;
+            overflow: hidden;
+        }
 
-<link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;600;700&display=swap" rel="stylesheet">
+        #container {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
 
-<style>
-body {
-  margin: 0;
-  height: 100vh;
-  overflow: hidden;
-  background: url("background.jpg") no-repeat center center fixed;
-  background-size: cover;
-  font-family: 'Comfortaa', sans-serif;
-  text-align: center;
-}
+        #heart {
+            font-size: 60px;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
 
-/* Title */
-h1 {
-  color: #ffc6e2;
-  margin-top: 20px;
-  font-size: 40px;
-  text-shadow: 0 0 10px rgba(255,255,255,0.8);
-}
+        #heart:active {
+            transform: scale(1.2);
+        }
 
-/* Bigger Heart */
-#heart {
-  position: absolute;
-  font-size: 110px;
-  cursor: pointer;
-  transition: 0.3s;
-}
+        #message {
+            font-size: 24px;
+            margin-top: 20px;
+            max-width: 80%;
+        }
 
-#heart:active {
-  transform: scale(1.2);
-}
+        #valentinePage {
+            display: none;
+        }
 
-/* Bottom Messages */
-#message {
-  position: fixed;
-  bottom: 25px;
-  width: 100%;
-  font-size: 28px;
-  color: #ff9ecf;
-  padding: 0 20px;
-  font-weight: 600;
-  text-shadow: 0 0 8px rgba(255,255,255,0.7);
-}
+        #yesBtn {
+            padding: 12px 25px;
+            font-size: 18px;
+            border: none;
+            border-radius: 20px;
+            background-color: #ff4d6d;
+            color: white;
+            cursor: pointer;
+            margin-top: 20px;
+        }
 
-/* Ending Screen */
-#ending {
-  display: none;
-  position: fixed;
-  inset: 0;
-  background: url("ending-bg.jpg") no-repeat center center fixed;
-  background-size: cover;
-  text-align: center;
-  padding: 40px;
-  overflow-y: auto;
-}
+        #finalImagePage {
+            display: none;
+        }
 
-#ending h2 {
-  color: #ff8fc4;
-  font-size: 36px;
-  margin-top: 40px;
-}
-
-#ending p, #ending h3 {
-  color: #ffb3da;
-  font-size: 22px;
-}
-
-/* YES Button */
-#yesBtn {
-  margin-top: 25px;
-  padding: 15px 30px;
-  font-size: 20px;
-  background: #ffc6e2;
-  border: none;
-  border-radius: 30px;
-  cursor: pointer;
-  font-family: 'Comfortaa', sans-serif;
-  transition: 0.3s;
-}
-
-#yesBtn:hover {
-  background: #ff9ecf;
-  transform: scale(1.1);
-}
-
-/* Final Canva Screen */
-#finalScreen {
-  display: none;
-  position: fixed;
-  inset: 0;
-  background: url("final-bg.jpg") no-repeat center center fixed;
-  background-size: cover;
-  justify-content: center;
-  align-items: center;
-}
-
-#finalScreen img {
-  width: 90%;
-  max-width: 500px;
-  border-radius: 25px;
-  box-shadow: 0 20px 40px rgba(255,182,220,0.5);
-}
-</style>
-
+        #finalImagePage img {
+            width: 100vw;
+            height: 100vh;
+            object-fit: cover;
+        }
+    </style>
 </head>
+
 <body>
 
-<h1>Catch My Heart 💕</h1>
-
-<div id="heart">💖</div>
-<div id="message"></div>
-
-<div id="ending">
-  <h2>You caught my heart ❤️</h2>
-  <p>Will you keep it safe? 🥺</p>
-
-  <h3>Will you be my Valentine? 💌</h3>
-  <button id="yesBtn">Yes 💖</button>
+<div id="container">
+    <div id="heart">❤️</div>
+    <div id="message">Click the heart.</div>
 </div>
 
-<div id="finalScreen">
-  <img src="final-image.jpg" alt="Final Surprise">
+<div id="valentinePage">
+    <h1>Will you be my Valentine?</h1>
+    <button id="yesBtn">Yes</button>
 </div>
 
-<audio id="bgMusic" loop>
-  <source src="music.mp3" type="audio/mpeg">
-</audio>
+<div id="finalImagePage">
+    <img src="your-canva-image.png">
+</div>
 
 <script>
-const heart = document.getElementById("heart");
-const message = document.getElementById("message");
-const ending = document.getElementById("ending");
-const finalScreen = document.getElementById("finalScreen");
-const yesBtn = document.getElementById("yesBtn");
-const music = document.getElementById("bgMusic");
+    const statements = [
+        "You make my days brighter.",
+        "You make everything feel calmer.",
+        "You’re my favorite person.",
+        "I like you more than I admit.",
+        "And I really want this with you."
+    ];
 
-let clicks = 0;
+    let index = 0;
 
-const messages = [
-  "You haunt my dreams in the best way 💕",
-  "You give me butterflies 🦋",
-  "You're my favorite person 🥺",
-  "You're my everything ❤️",
-  "You're stuck with me now 😌"
-];
+    const heart = document.getElementById("heart");
+    const message = document.getElementById("message");
+    const container = document.getElementById("container");
+    const valentinePage = document.getElementById("valentinePage");
+    const yesBtn = document.getElementById("yesBtn");
+    const finalImagePage = document.getElementById("finalImagePage");
 
-function moveHeart() {
-  const x = Math.random() * (window.innerWidth - 140);
-  const y = Math.random() * (window.innerHeight - 140);
-  heart.style.left = x + "px";
-  heart.style.top = y + "px";
-}
+    heart.addEventListener("click", function() {
+        if (index < statements.length) {
+            message.textContent = statements[index];
+            index++;
+        } else {
+            container.style.display = "none";
+            valentinePage.style.display = "flex";
+            valentinePage.style.flexDirection = "column";
+            valentinePage.style.justifyContent = "center";
+            valentinePage.style.alignItems = "center";
+            valentinePage.style.height = "100vh";
+            valentinePage.style.backgroundColor = "#ffdde1";
+        }
+    });
 
-heart.addEventListener("click", () => {
-
-  message.textContent = messages[clicks];
-  clicks++;
-
-  moveHeart();
-
-  if (clicks === messages.length) {
-    heart.style.display = "none";
-    message.style.display = "none";
-    ending.style.display = "block";
-  }
-});
-
-yesBtn.addEventListener("click", () => {
-  ending.style.display = "none";
-  finalScreen.style.display = "flex";
-});
-
-moveHeart();
-
-// Music starts after first interaction
-document.body.addEventListener("click", () => {
-  music.play();
-}, { once: true });
+    yesBtn.addEventListener("click", function() {
+        valentinePage.style.display = "none";
+        finalImagePage.style.display = "block";
+    });
 </script>
 
 </body>
