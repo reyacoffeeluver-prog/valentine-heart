@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Catch My Heart :p 💖</title>
+
+<style>
+body {
+  margin: 0;
+  height: 100vh;
+  overflow: hidden;
+  background: linear-gradient(to bottom, #ffe6f0, #ffd6eb);
+  font-family: Arial, sans-serif;
+  text-align: center;
+}
+
+h1 {
+  color: #ff4d88;
+  margin-top: 20px;
+}
+
+#heart {
+  position: absolute;
+  font-size: 60px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+#message {
+  position: fixed;
+  bottom: 20px;
+  width: 100%;
+  font-size: 18px;
+  color: #cc0066;
+  padding: 0 20px;
+}
+
+#ending {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: white;
+  text-align: center;
+  padding: 30px;
+  overflow-y: auto;
+}
+
+#ending h2 {
+  color: #ff3366;
+}
+
+.gallery img {
+  width: 80%;
+  max-width: 300px;
+  margin: 10px;
+  border-radius: 15px;
+}
+</style>
+
+</head>
+<body>
+
+<h1>Catch My Heart 💕</h1>
+
+<div id="heart">💖</div>
+<div id="message"></div>
+
+<div id="ending">
+  <h2>You caught my heart ❤️</h2>
+  <p>Will you keep it safe ?🥺.</p>
+
+  <div class="gallery">
+    <img src="photo1.jpg">
+    <img src="photo2.jpg">
+  </div>
+
+  <h3>I know you're already my valentine but... Will you be my Valentine? 💌</h3>
+</div>
+
+<audio id="bgMusic" autoplay loop>
+  <source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+const heart = document.getElementById("heart");
+const message = document.getElementById("message");
+const ending = document.getElementById("ending");
+const music = document.getElementById("bgMusic");
+
+let clicks = 0;
+
+const messages = [
+  "You haunt me dreams in the best way mi amor ✨",
+  "You give me da butterflies, daaarling!💕",
+  "You're my favorite person 🥺",
+  "you're my everything (no its not a confession that I'm broke iykyk)❤️",
+  "You're stuck with me now 😌"
+];
+
+function moveHeart() {
+  const x = Math.random() * (window.innerWidth - 80);
+  const y = Math.random() * (window.innerHeight - 80);
+  heart.style.left = x + "px";
+  heart.style.top = y + "px";
+}
+
+heart.addEventListener("click", () => {
+  clicks++;
+  const randomMessage = messages[Math.floor(Math.random() * messages.length)];
+  message.textContent = randomMessage;
+  moveHeart();
+
+  if (clicks >= 10) {
+    heart.style.display = "none";
+    message.style.display = "none";
+    ending.style.display = "block";
+  }
+});
+
+moveHeart();
+
+// Mobile autoplay fix
+document.body.addEventListener("click", () => {
+  music.play();
+}, { once: true });
+</script>
+
+</body>
+</html>
