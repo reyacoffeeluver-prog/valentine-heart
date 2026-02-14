@@ -94,17 +94,13 @@ h1 {
   box-shadow: 0 8px 20px rgba(255,105,180,0.4);
 }
 
-/* Final Canva Fullscreen */
+/* Final Fullscreen Canva Page */
 #finalPage {
   display: none;
   position: fixed;
   inset: 0;
-}
-
-#finalPage img {
-  width: 100vw;
-  height: 100vh;
-  object-fit: cover;
+  background: url("final-bg.jpg") no-repeat center center fixed;
+  background-size: cover;
 }
 </style>
 
@@ -129,9 +125,7 @@ h1 {
   <button id="yesBtn">Yes 💖</button>
 </div>
 
-<div id="finalPage">
-  <img src="final-bg.jpg">
-</div>
+<div id="finalPage"></div>
 
 <audio id="bgMusic" loop>
   <source src="music.mp3" type="audio/mpeg">
@@ -163,6 +157,7 @@ function moveHeart() {
 }
 
 heart.addEventListener("click", () => {
+
   if (clicks < messages.length) {
     message.textContent = messages[clicks];
     clicks++;
